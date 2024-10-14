@@ -1,5 +1,4 @@
 import logging
-import time
 import traceback
 from traceback import print_stack
 from selenium.webdriver.common.by import By
@@ -8,16 +7,17 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 from callhub.custom_logger import customLogger
-class SeleniumDriver:
-    log=customLogger(logging.DEBUG)
 
-    def __init__(self,driver):
-        self.driver=driver
+
+class SeleniumDriver:
+    log = customLogger(logging.DEBUG)
+
+    def __init__(self, driver):
+        self.driver = driver
 
     def getTitle(self):
-        title=self.driver.title
+        title = self.driver.title
         self.log.info(f"Current Page Title is '{title}'")
         return title
 
@@ -111,8 +111,6 @@ class SeleniumDriver:
             self.log.error("Exception Caught: {}".format(traceback.format_exc()))
             self.log.error("".join(traceback.format_stack()))
 
-
-
     def isElementPresent(self, locator="", locatorType="id", element=None):
         element_list = []
         try:
@@ -130,9 +128,6 @@ class SeleniumDriver:
         except Exception as e:
             self.log.error(f"Error occurred while checking for element presence: {str(e)}")
             return False
-
-
-
 
     def waitForElement(self, locator, locatorType="id",
                        timeout=5, pollFrequency=1):
